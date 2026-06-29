@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Catalyst — the AI-native studio that builds companies</title>
+<meta name="description" content="Catalyst is the AI-native venture studio that builds category-defining companies. Founders start at the frontier: capital, a team, and a 100+ agent workforce on day one." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1626; --ink-2:#16233A; --ink-3:#22324E;
+  --blue:#2E6CF0; --blue-2:#5B8BF5; --blue-soft:#E9F0FE;
+  --paper:#FBFBF9; --paper-2:#F3F4F1; --line:#E3E5E0; --line-2:#D2D6CF;
+  --txt:#0C1626; --txt-2:#566076; --txt-3:#8A93A6;
+  --green:#16A06A; --amber:#D98A2B;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.22,.7,.25,1);
+  --maxw:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);background:var(--paper);color:var(--txt);line-height:1.6;font-size:16px}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono)}
+.lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:500}
+.lbl.dim{color:var(--txt-3)}
+.serif{font-family:var(--serif)}
+h1,h2,h3{line-height:1.05;font-weight:600;letter-spacing:-.02em}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:12px 20px;border-radius:8px;transition:all .22s var(--ease);cursor:pointer;border:1px solid transparent;white-space:nowrap}
+.btn-pri{background:var(--ink);color:#fff}
+.btn-pri:hover{background:var(--blue);transform:translateY(-1px)}
+.btn-line{border-color:var(--line-2);color:var(--ink)}
+.btn-line:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+.btn-sm{padding:9px 15px;font-size:13.5px}
+.arrow{transition:transform .2s var(--ease)}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* NAV */
+header.nav{position:sticky;top:0;z-index:80;background:rgba(251,251,249,.82);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-.02em}
+.brand .nm{font-family:var(--mono);font-weight:600;letter-spacing:-.01em}
+.nav nav{display:flex;gap:30px;align-items:center}
+.nav nav a{font-size:14px;color:var(--txt-2);font-weight:500;transition:color .15s}
+.nav nav a:hover{color:var(--ink)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.menu-btn{display:none;background:none;border:0;font-size:22px;cursor:pointer;color:var(--ink)}
+
+/* HERO */
+.hero{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1.02fr 1.18fr;gap:56px;align-items:center}
+.hero .lbl{margin-bottom:20px;display:inline-block}
+.hero h1{font-size:clamp(38px,5vw,62px);letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero .sub{margin-top:22px;font-size:18px;color:var(--txt-2);max-width:40ch;line-height:1.5}
+.hero .who{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11.5px;color:var(--txt-2);border:1px solid var(--line-2);border-radius:999px;padding:5px 12px;background:#fff}
+.hero .cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* OS DASHBOARD MOCK */
+.os{background:var(--ink);border-radius:16px;padding:18px;box-shadow:0 30px 80px -20px rgba(12,22,38,.45);border:1px solid var(--ink-3);position:relative;overflow:hidden}
+.os:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 200px at 80% -10%,rgba(46,108,240,.22),transparent 70%);pointer-events:none}
+.os-bar{display:flex;align-items:center;justify-content:space-between;padding:4px 6px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.os-bar .dots{display:flex;gap:6px}
+.os-bar .dots i{width:10px;height:10px;border-radius:50%;background:#33425e;display:block}
+.os-bar .title{font-family:var(--mono);font-size:11px;color:#8fa0bd;letter-spacing:.05em}
+.os-bar .live{font-family:var(--mono);font-size:10.5px;color:var(--green);display:flex;align-items:center;gap:6px}
+.os-bar .live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(22,160,106,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(22,160,106,.5)}70%{box-shadow:0 0 0 7px rgba(22,160,106,0)}100%{box-shadow:0 0 0 0 rgba(22,160,106,0)}}
+.os-body{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:14px}
+.os-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:13px}
+.os-card .k{font-family:var(--mono);font-size:10px;color:#8fa0bd;letter-spacing:.1em;text-transform:uppercase}
+.os-card .v{font-size:23px;font-weight:600;color:#fff;margin-top:5px;letter-spacing:-.02em}
+.os-card .v small{font-size:12px;color:var(--blue-2);font-weight:500}
+.os-pipe{grid-column:1/3;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:13px}
+.os-pipe .k{font-family:var(--mono);font-size:10px;color:#8fa0bd;letter-spacing:.1em;text-transform:uppercase;margin-bottom:11px}
+.pipe{display:flex;gap:4px}
+.pipe .st{flex:1;height:30px;border-radius:6px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9.5px;color:#7c8aa6;position:relative;overflow:hidden}
+.pipe .st.done{background:rgba(46,108,240,.22);color:#bcd0fb}
+.pipe .st.active{background:var(--blue);color:#fff}
+.pipe .st.active:after{content:"";position:absolute;bottom:0;left:0;height:2px;width:100%;background:#fff;opacity:.5;animation:fill 2.4s var(--ease) infinite}
+@keyframes fill{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.os-feed{grid-column:1/3;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:6px 13px}
+.os-feed .ln{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.08);font-family:var(--mono);font-size:11px}
+.os-feed .ln:last-child{border:0}
+.os-feed .ag{color:#cdd8ec}
+.os-feed .ds{color:#7c8aa6}
+
+/* SECTIONS */
+section{padding:88px 0}
+.eyebrow{margin-bottom:18px;display:inline-block}
+.section-dark{background:var(--ink);color:#fff}
+.section-tint{background:var(--paper-2)}
+
+/* PROOF STRIP */
+.proof{border-bottom:1px solid var(--line);background:var(--paper)}
+.proof .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0}
+.proof .m{padding:34px 26px;border-right:1px solid var(--line)}
+.proof .m:last-child{border-right:0}
+.proof .m .n{font-family:var(--serif);font-size:46px;font-weight:500;letter-spacing:-.02em;color:var(--ink)}
+.proof .m .n .u{color:var(--blue);font-size:26px}
+.proof .m .l{font-size:13px;color:var(--txt-2);margin-top:4px;line-height:1.35}
+.proof-note{font-size:11.5px;color:var(--txt-3);padding:0 28px 26px;max-width:var(--maxw);margin:0 auto;font-family:var(--mono)}
+
+/* EDITORIAL ESSAY */
+.essay{max-width:760px}
+.essay .lbl{margin-bottom:22px;display:block}
+.essay h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,40px);font-weight:500;letter-spacing:-.02em;line-height:1.12}
+.essay p{font-size:18px;color:var(--txt-2);margin-top:22px;line-height:1.6;max-width:64ch}
+.essay p b{color:var(--ink);font-weight:600}
+.tags{margin-top:26px;display:flex;gap:8px;flex-wrap:wrap}
+.tags .t{font-family:var(--mono);font-size:12px;color:var(--txt-2);background:#fff;border:1px solid var(--line-2);border-radius:7px;padding:7px 12px}
+.tags .t s{color:var(--amber);text-decoration:none}
+
+/* PROCESS (interactive) */
+.proc-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+.proc-head h2{font-size:clamp(26px,3.4vw,38px);max-width:18ch}
+.proc-tabs{display:flex;gap:4px;margin-top:36px;border-bottom:1px solid var(--line);overflow-x:auto}
+.proc-tab{flex:0 0 auto;padding:14px 18px;font-family:var(--mono);font-size:13px;color:var(--txt-2);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:9px;white-space:nowrap}
+.proc-tab .num{color:var(--txt-3);font-size:11px}
+.proc-tab:hover{color:var(--ink)}
+.proc-tab.on{color:var(--ink);border-bottom-color:var(--blue);font-weight:600}
+.proc-tab.on .num{color:var(--blue)}
+.proc-panel{display:none;padding-top:34px;animation:fade .4s var(--ease)}
+.proc-panel.on{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.proc-panel h3{font-family:var(--serif);font-size:28px;font-weight:500;margin-bottom:6px}
+.proc-panel .stage-sub{color:var(--txt-2);font-size:16px;max-width:48ch}
+.io{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.io .box .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-3);margin-bottom:8px}
+.io .box ul{list-style:none}
+.io .box li{font-size:14px;color:var(--ink);padding:4px 0 4px 18px;position:relative}
+.io .box li:before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:2px;background:var(--blue)}
+.proc-meta{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;height:fit-content}
+.proc-meta .row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:14px}
+.proc-meta .row:last-child{border:0}
+.proc-meta .row .rk{color:var(--txt-2)}
+.proc-meta .row .rv{font-weight:600;text-align:right;max-width:60%}
+.gate{margin-top:18px;background:var(--blue-soft);border-radius:10px;padding:14px 16px;font-size:13.5px;color:#1a3a82}
+.gate b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:4px;color:var(--blue)}
+.split-bar{margin-top:22px}
+.split-bar .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-3);margin-bottom:8px}
+.bar{display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.bar .a{background:var(--ink);color:#fff;display:flex;align-items:center;padding-left:12px;font-size:12px;font-weight:600;font-family:var(--mono)}
+.bar .h{background:var(--blue-soft);color:#1a3a82;display:flex;align-items:center;padding-left:12px;font-size:12px;font-weight:600;font-family:var(--mono)}
+
+/* ENGINE */
+.section-dark .lbl{color:var(--blue-2)}
+.eng-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:start;margin-top:14px}
+.eng h2{font-size:clamp(28px,3.6vw,42px);color:#fff;letter-spacing:-.025em}
+.eng p{color:#aebbd2;font-size:17px;margin-top:20px;max-width:42ch}
+.eng .split-bar .k{color:#7c8aa6}
+.eng .bar{border-color:var(--ink-3)}
+.eng .bar .h{background:rgba(46,108,240,.25);color:#bcd0fb}
+.agents{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.agcol .ac-h{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-2);margin-bottom:10px}
+.ag{background:var(--ink-2);border:1px solid var(--ink-3);border-radius:10px;padding:12px 14px;margin-bottom:9px;transition:border-color .2s,transform .2s}
+.ag:hover{border-color:var(--blue);transform:translateX(3px)}
+.ag .an{font-size:14px;font-weight:600;color:#fff}
+.ag .ao{font-family:var(--mono);font-size:11px;color:#8fa0bd;margin-top:3px}
+
+/* AUDIENCE */
+.aud-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px}
+.aud{border:1px solid var(--line);border-radius:18px;padding:34px;background:#fff;display:flex;flex-direction:column}
+.aud.dark{background:var(--ink);border-color:transparent;color:#fff}
+.aud h3{font-family:var(--serif);font-size:27px;font-weight:500;margin:14px 0 6px;letter-spacing:-.01em}
+.aud .ah-sub{color:var(--txt-2);font-size:15px;margin-bottom:22px}
+.aud.dark .ah-sub{color:#aebbd2}
+.tradeoff{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:24px}
+.to .tk{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-3);margin-bottom:6px}
+.aud.dark .to .tk{color:#7c8aa6}
+.to ul{list-style:none}
+.to li{font-size:14px;padding:3px 0 3px 20px;position:relative;color:var(--ink)}
+.aud.dark .to li{color:#dde5f2}
+.to li:before{content:"+";position:absolute;left:0;color:var(--green);font-weight:700}
+.to.give li:before{content:"–";color:var(--amber)}
+.aud .btn{margin-top:auto;align-self:flex-start}
+
+/* PROOF ARTIFACTS */
+.art-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.art{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.art:hover{transform:translateY(-4px);box-shadow:0 20px 50px -20px rgba(12,22,38,.25)}
+.art .vis{height:120px;background:var(--paper-2);border-bottom:1px solid var(--line);padding:14px;font-family:var(--mono);font-size:9.5px;color:var(--txt-2);overflow:hidden;position:relative}
+.art .vis .mini-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--line)}
+.art .vis .barline{height:6px;border-radius:3px;background:var(--blue-soft);margin:5px 0}
+.art .vis .barline.f{background:var(--blue)}
+.art .meta{padding:15px}
+.art .meta .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.art .meta h4{font-size:15px;font-weight:600;margin:5px 0 4px}
+.art .meta p{font-size:12.5px;color:var(--txt-2);line-height:1.4}
+
+/* CLOSE */
+.close{text-align:left;background:var(--ink);color:#fff}
+.close h2{font-family:var(--serif);font-size:clamp(30px,4.4vw,52px);font-weight:500;letter-spacing:-.02em;max-width:16ch}
+.close h2 em{font-style:normal;color:var(--blue-2)}
+.close .cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
+.close .btn-pri{background:#fff;color:var(--ink)}
+.close .btn-pri:hover{background:var(--blue);color:#fff}
+.close .btn-line{border-color:rgba(255,255,255,.25);color:#fff}
+.close .btn-line:hover{background:#fff;color:var(--ink);border-color:#fff}
+
+/* FOOTER */
+footer{background:var(--ink);color:#8fa0bd;padding:24px 0 56px;border-top:1px solid var(--ink-3)}
+.fgrid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:30px;padding-top:40px}
+footer h5{color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:13px}
+footer a{display:block;color:#8fa0bd;font-size:14px;padding:5px 0;transition:color .15s}
+footer a:hover{color:#fff}
+footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px}
+.fbot{margin-top:42px;padding-top:22px;border-top:1px solid var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;font-family:var(--mono)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.pipe .st.active:after,.os-bar .live:before{animation:none}}
+
+@media(max-width:980px){
+  .hero .wrap,.eng-grid,.proc-panel.on,.aud-grid{grid-template-columns:1fr;gap:34px}
+  .os{order:-1}
+  .proof .wrap{grid-template-columns:1fr 1fr}
+  .proof .m:nth-child(2){border-right:0}
+  .proof .m{border-bottom:1px solid var(--line)}
+  .art-grid{grid-template-columns:1fr 1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .nav nav{display:none}.menu-btn{display:block}
+}
+@media(max-width:560px){
+  section{padding:60px 0}
+  .proof .wrap{grid-template-columns:1fr}.proof .m{border-right:0}
+  .art-grid{grid-template-columns:1fr}
+  .io{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(50,50)">
+        <path d="M 0,-30 A 30,30 0 0 1 26,15" fill="none" stroke="#5B8BF5" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+        <path d="M 0,30 A 30,30 0 0 1 -26,-15" fill="none" stroke="#5B8BF5" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+        <path d="M 0,-18 A 18,18 0 0 1 15.6,9" fill="none" stroke="#2E6CF0" stroke-width="9" stroke-linecap="round"/>
+        <circle r="7" fill="#2E6CF0"/></g></svg>
+      <span class="nm">catalyst</span>
+    </a>
+    <nav>
+      <a href="#problem">Why we exist</a>
+      <a href="#process">How we build</a>
+      <a href="#engine">Catalyst OS</a>
+      <a href="#audiences">Founders &amp; LPs</a>
+      <a href="#proof">Proof</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-line btn-sm" href="#audiences">LP overview</a>
+      <a class="btn btn-pri btn-sm" href="#audiences">Become an EIR</a>
+    </div>
+    <button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.nav nav').style.display='flex'">☰</button>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="lbl">The AI-native company foundry</span>
+      <h1>We don't fund companies. <em>We build them.</em></h1>
+      <p class="sub">Catalyst is a venture studio for builders with conviction. You start at the frontier — capital, a founding team, and a 100+ AI-agent workforce on day one — instead of losing your first 18 months to plumbing.</p>
+      <div class="who">
+        <span class="chip">For repeat founders</span>
+        <span class="chip">For domain experts (EIRs)</span>
+        <span class="chip">For institutional LPs</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-pri" href="#audiences">Become an EIR <span class="arrow">→</span></a>
+        <a class="btn btn-line" href="#process">See how the studio works</a>
+      </div>
+    </div>
+
+    <!-- LIVE CATALYST OS MOCK -->
+    <div class="os rv" aria-label="Catalyst OS — company creation dashboard">
+      <div class="os-bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="title">catalyst&#160;os&#160;/&#160;build&#160;#0418</div>
+        <div class="live">live</div>
+      </div>
+      <div class="os-body">
+        <div class="os-card"><div class="k">Active builds</div><div class="v" data-count="11" data-suffix="">0</div></div>
+        <div class="os-card"><div class="k">Agents online</div><div class="v" data-count="104" data-suffix="">0<small> /112</small></div></div>
+        <div class="os-pipe">
+          <div class="k">Build pipeline — "Project Meridian"</div>
+          <div class="pipe">
+            <div class="st done">Discover</div>
+            <div class="st done">Validate</div>
+            <div class="st active">Build</div>
+            <div class="st">Launch</div>
+            <div class="st">Scale</div>
+            <div class="st">Spin out</div>
+          </div>
+        </div>
+        <div class="os-feed">
+          <div class="ln"><span class="ag">Research Agent</span><span class="ds">4 theses ranked · ✓</span></div>
+          <div class="ln"><span class="ag">Engineering Agent</span><span class="ds">MVP · 1,284 commits</span></div>
+          <div class="ln"><span class="ag">GTM Agent</span><span class="ds">42 interviews · scoring</span></div>
+          <div class="ln"><span class="ag">Finance Agent</span><span class="ds">model reconciled · ✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof">
+  <div class="wrap">
+    <div class="m"><div class="n" data-count="25" data-prefix="~" data-suffix=" mo">~0 mo</div><div class="l">Median studio time to Series A, vs. ~56 for traditional startups</div></div>
+    <div class="m"><div class="n" data-count="84" data-suffix="%">0%</div><div class="l">Of studio-backed ventures reach seed funding, vs. ~42%</div></div>
+    <div class="m"><div class="n">30–50<span class="u">%</span></div><div class="l">Co-ownership Catalyst earns by building, not just funding</div></div>
+    <div class="m"><div class="n" data-count="100" data-suffix="+">0+</div><div class="l">Specialized AI agents working inside every company build</div></div>
+  </div>
+</div>
+<div class="proof-note">Benchmarks from venture-studio industry research (InNiches 2024; Bundl; Esinli Capital). Apply to studio-built companies at pre-seed→Series A. Figures are directional, not audited — Catalyst models its own returns bottom-up and conservatively.</div>
+
+<!-- PROBLEM (editorial essay) -->
+<section id="problem">
+  <div class="wrap">
+    <div class="essay rv">
+      <span class="lbl">Why exceptional founders still lose 18 months</span>
+      <h2>The bottleneck was never money. It was time.</h2>
+      <p>Capital has been abundant for a decade. Yet the most capable builders alive still spend their first year and a half on work that has nothing to do with their product — <b>incorporation, hiring, payroll, contracts, fundraising decks, back-office, dashboards.</b> The idea waits while the plumbing gets built, badly, from scratch, for the thousandth time.</p>
+      <p>We think that's a waste of rare talent. So we built the plumbing once — and put an AI workforce behind it. A founder who joins Catalyst skips the drag and starts at the frontier.</p>
+      <div class="tags">
+        <span class="t">Hiring &amp; recruiting</span>
+        <span class="t">Legal &amp; incorporation</span>
+        <span class="t">Finance &amp; back office</span>
+        <span class="t">GTM &amp; first customers</span>
+        <span class="t">Fundraising ops</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS (interactive) -->
+<section id="process" class="section-tint">
+  <div class="wrap">
+    <div class="proc-head rv">
+      <h2>One process. From conviction to company.</h2>
+      <span class="lbl dim">Click a stage — inputs, gates, owners, agents</span>
+    </div>
+    <div class="proc-tabs" id="ptabs"></div>
+    <div id="ppanels"></div>
+  </div>
+</section>
+
+<!-- ENGINE -->
+<section id="engine" class="section-dark">
+  <div class="wrap">
+    <span class="lbl eyebrow">The engine — Catalyst OS</span>
+    <div class="eng eng-grid">
+      <div class="rv">
+        <h2>Agents execute. Humans decide.</h2>
+        <p>Catalyst OS orchestrates a workforce of specialized agents across the entire build line. Senior partners set direction and own every decision-gate; agents do the undifferentiated execution — so the marginal cost of starting a company falls toward zero, and every build trains the next.</p>
+        <div class="split-bar">
+          <div class="k">Work split per company build</div>
+          <div class="bar"><div class="a" style="width:72%">Agents — execution 72%</div><div class="h" style="width:28%">Humans 28%</div></div>
+        </div>
+      </div>
+      <div class="agents rv">
+        <div class="agcol">
+          <div class="ac-h">Build &amp; product</div>
+          <div class="ag"><div class="an">Engineering Agent</div><div class="ao">ships MVP · code · infra</div></div>
+          <div class="ag"><div class="an">Design Agent</div><div class="ao">product UI · brand system</div></div>
+          <div class="ag"><div class="an">Research Agent</div><div class="ao">theses · market maps</div></div>
+        </div>
+        <div class="agcol">
+          <div class="ac-h">Go-to-market &amp; ops</div>
+          <div class="ag"><div class="an">GTM Agent</div><div class="ao">interviews · pipeline</div></div>
+          <div class="ag"><div class="an">Finance Agent</div><div class="ao">model · cap table</div></div>
+          <div class="ag"><div class="an">Recruiting Agent</div><div class="ao">sources founding team</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCES -->
+<section id="audiences">
+  <div class="wrap">
+    <span class="lbl eyebrow">Who we build with</span>
+    <div class="aud-grid">
+      <div class="aud rv">
+        <span class="lbl">For founders &amp; EIRs</span>
+        <h3>Start at the frontier.</h3>
+        <p class="ah-sub">For repeat founders and deep domain experts who want to build, not administrate.</p>
+        <div class="tradeoff">
+          <div class="to"><div class="tk">What you get</div><ul>
+            <li>Capital, a founding team, and a 100+ agent workforce on day one</li>
+            <li>The studio's shared eng, design, GTM, finance &amp; legal spine</li>
+            <li>~50–60% lower cash-to-PMF; you focus only on the irreplaceable</li>
+          </ul></div>
+          <div class="to give"><div class="tk">What you give up</div><ul>
+            <li>Shared ownership — the studio co-owns 30–50%, earned by building with you</li>
+            <li>A defined process with real decision-gates, not total solo autonomy</li>
+          </ul></div>
+        </div>
+        <a class="btn btn-pri" href="#">Become an EIR <span class="arrow">→</span></a>
+      </div>
+      <div class="aud dark rv">
+        <span class="lbl">For institutional LPs</span>
+        <h3>A manufacturing process with venture upside.</h3>
+        <p class="ah-sub">A two-entity studio + fund built for ownership, capital efficiency, and durability.</p>
+        <div class="tradeoff">
+          <div class="to"><div class="tk">Return logic</div><ul>
+            <li>Higher entry ownership (30–50%) at ~2.5× the capital efficiency of priced rounds</li>
+            <li>Higher Series-A conversion via an instrumented, gated build process</li>
+            <li>Recurring revenue (services + OS SaaS) funds the studio — returns are upside, not survival</li>
+          </ul></div>
+          <div class="to give"><div class="tk">What to underwrite</div><ul>
+            <li>Studio economics &amp; attribution — addressed via transparent, two-entity reporting</li>
+            <li>Agent-reliability ramp — mitigated by human-in-the-loop at every gate</li>
+          </ul></div>
+        </div>
+        <a class="btn btn-pri" href="#">Request the studio memo <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF ARTIFACTS -->
+<section id="proof" class="section-tint">
+  <div class="wrap">
+    <span class="lbl eyebrow">What the studio produces</span>
+    <div class="proc-head rv"><h2>Every build leaves an evidence trail.</h2>
+      <span class="lbl dim">Standardized artifacts at each gate</span></div>
+    <div class="art-grid">
+      <div class="art rv">
+        <div class="vis">
+          <div class="mini-row"><span>THESIS / Project Meridian</span><span>v2</span></div>
+          <div class="mini-row"><span>Market</span><span>$14B</span></div>
+          <div class="mini-row"><span>Why now</span><span>AI cost ▼</span></div>
+          <div class="mini-row"><span>Conviction</span><span>8.4/10</span></div>
+        </div>
+        <div class="meta"><div class="k">Discover</div><h4>Thesis memo</h4><p>The case for building — market, why-now, wedge, and a scored conviction call.</p></div>
+      </div>
+      <div class="art rv">
+        <div class="vis">
+          <div class="mini-row"><span>VALIDATION SCORECARD</span><span>GATE 2</span></div>
+          <div class="barline f" style="width:88%"></div><span>Demand 88</span>
+          <div class="barline" style="width:64%"></div><span>Willingness-to-pay 64</span>
+          <div class="barline f" style="width:79%"></div><span>Reachability 79</span>
+        </div>
+        <div class="meta"><div class="k">Validate</div><h4>Validation scorecard</h4><p>Customer signal quantified before a line of code — the kill-or-build gate.</p></div>
+      </div>
+      <div class="art rv">
+        <div class="vis">
+          <div class="mini-row"><span>MVP / build #0418</span><span>● live</span></div>
+          <div class="barline f" style="width:100%"></div>
+          <div class="barline f" style="width:72%"></div>
+          <div class="barline" style="width:48%"></div>
+          <div class="mini-row"><span>1,284 commits</span><span>14 days</span></div>
+        </div>
+        <div class="meta"><div class="k">Build</div><h4>MVP snapshot</h4><p>A working product in weeks, shipped by the engineering &amp; design agents.</p></div>
+      </div>
+      <div class="art rv">
+        <div class="vis">
+          <div class="mini-row"><span>GTM DASHBOARD</span><span>wk 6</span></div>
+          <div class="mini-row"><span>Pipeline</span><span>42 → 9</span></div>
+          <div class="mini-row"><span>Design partners</span><span>3 signed</span></div>
+          <div class="mini-row"><span>MRR</span><span>$11.4k</span></div>
+        </div>
+        <div class="meta"><div class="k">Launch</div><h4>GTM &amp; revenue log</h4><p>First customers and revenue, tracked live — the proof PMF is in reach.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close">
+  <div class="wrap rv">
+    <h2>We're not here to fund the future. <em>We're here to manufacture it.</em></h2>
+    <div class="cta">
+      <a class="btn btn-pri" href="#">Become an EIR <span class="arrow">→</span></a>
+      <a class="btn btn-line" href="#">Bring a thesis</a>
+      <a class="btn btn-line" href="#">Request the LP overview</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="brand" href="#top" style="color:#fff;margin-bottom:6px">
+          <svg width="24" height="24" viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(50,50)"><path d="M 0,-18 A 18,18 0 0 1 15.6,9" fill="none" stroke="#2E6CF0" stroke-width="9" stroke-linecap="round"/><circle r="7" fill="#2E6CF0"/></g></svg>
+          <span class="nm">catalyst</span>
+        </a>
+        <p style="max-width:34ch;font-size:14px;margin-top:6px">The AI-native venture studio that builds category-defining companies.</p>
+        <p class="tag">The unfair advantage, productized.</p>
+      </div>
+      <div><h5>Studio</h5><a href="#process">How we build</a><a href="#engine">Catalyst OS</a><a href="#proof">Proof</a><a href="#">Companies</a></div>
+      <div><h5>People</h5><a href="#audiences">Founders</a><a href="#audiences">Investors</a><a href="#">Careers</a><a href="#">About</a></div>
+      <div><h5>Company</h5><a href="#">Manifesto</a><a href="#">Press</a><a href="#">Contact</a><a href="#">Legal</a></div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Catalyst Venture Studio, Inc.</span>
+      <span>Built by the studio.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Interactive process */
+const STAGES=[
+ {n:"01",t:"Discover",h:"Discover",sub:"An AI research engine surfaces and ranks opportunities continuously — we start only where AI changes the cost structure.",
+  in:["Market &amp; tech signals","Founder/EIR theses","Portfolio adjacencies"],out:["Ranked thesis memo","Conviction score","Build/no-build brief"],
+  time:"1–2 weeks",owner:"Managing Partner",gate:"Conviction ≥ bar to advance",agents:"Research, Strategy",ai:65},
+ {n:"02",t:"Validate",h:"Validate",sub:"Customer signal before code. We quantify real demand and willingness-to-pay — and kill fast and cheap if it isn't there.",
+  in:["Thesis memo","Target customer list"],out:["Validation scorecard","Pricing hypothesis","Kill or build decision"],
+  time:"2–4 weeks",owner:"Studio Partner + EIR",gate:"Demand &amp; WTP thresholds met",agents:"GTM, Research",ai:55},
+ {n:"03",t:"Build",h:"Build",sub:"The agent workforce plus shared infrastructure ships a real MVP in weeks, not quarters.",
+  in:["Validated spec","Founding EIR"],out:["Working MVP","Brand &amp; product UI","Instrumented analytics"],
+  time:"4–8 weeks",owner:"Founder + Eng Agent",gate:"MVP usable by design partners",agents:"Engineering, Design",ai:78},
+ {n:"04",t:"Launch",h:"Launch",sub:"The GTM machine turns design partners into first revenue, with everything tracked live.",
+  in:["MVP","Design partners"],out:["First paying customers","GTM playbook","Revenue log"],
+  time:"6–12 weeks",owner:"Founder + GTM Agent",gate:"First real revenue + retention signal",agents:"GTM, Finance",ai:60},
+ {n:"05",t:"Scale",h:"Scale",sub:"On PMF signal, we concentrate follow-on capital and recruit the permanent founding team.",
+  in:["Revenue traction","Retention data"],out:["Follow-on funding","Founding hires","Series-A readiness"],
+  time:"3–6 months",owner:"Investment Committee",gate:"PMF metrics clear Series-A bar",agents:"Recruiting, Finance",ai:45},
+ {n:"06",t:"Spin out",h:"Spin out",sub:"The company becomes independent. Catalyst co-owns 30–50% and stays an unfair advantage on call.",
+  in:["Series-A-ready company","Founding team"],out:["Independent company","Cap table + governance","Studio support SLA"],
+  time:"ongoing",owner:"Board",gate:"Clean cap table &amp; governance",agents:"Legal, Finance",ai:40}
+];
+const tabs=document.getElementById('ptabs'),panels=document.getElementById('ppanels');
+STAGES.forEach((s,i)=>{
+  const tab=document.createElement('div');tab.className='proc-tab'+(i===0?' on':'');
+  tab.innerHTML='<span class="num">'+s.n+'</span>'+s.t;tab.onclick=()=>select(i);tabs.appendChild(tab);
+  const p=document.createElement('div');p.className='proc-panel'+(i===0?' on':'');
+  p.innerHTML=`
+   <div>
+     <h3>${s.h}</h3>
+     <div class="stage-sub">${s.sub}</div>
+     <div class="io">
+       <div class="box"><div class="k">Inputs</div><ul>${s.in.map(x=>'<li>'+x+'</li>').join('')}</ul></div>
+       <div class="box"><div class="k">Outputs</div><ul>${s.out.map(x=>'<li>'+x+'</li>').join('')}</ul></div>
+     </div>
+     <div class="split-bar"><div class="k">Agents vs. humans on this stage</div>
+       <div class="bar"><div class="a" style="width:${s.ai}%">Agents ${s.ai}%</div><div class="h" style="width:${100-s.ai}%">Humans ${100-s.ai}%</div></div>
+     </div>
+   </div>
+   <div class="proc-meta">
+     <div class="row"><span class="rk">Avg. duration</span><span class="rv">${s.time}</span></div>
+     <div class="row"><span class="rk">Who decides</span><span class="rv">${s.owner}</span></div>
+     <div class="row"><span class="rk">Agents at work</span><span class="rv">${s.agents}</span></div>
+     <div class="gate"><b>Decision gate</b>${s.gate}</div>
+   </div>`;
+  panels.appendChild(p);
+});
+function select(i){document.querySelectorAll('.proc-tab').forEach((t,j)=>t.classList.toggle('on',j===i));
+  document.querySelectorAll('.proc-panel').forEach((p,j)=>p.classList.toggle('on',j===i));}
+
+/* Reveal + counters */
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');
+  e.target.querySelectorAll&&e.target.querySelectorAll('[data-count]').forEach(run);
+  if(e.target.hasAttribute&&e.target.hasAttribute('data-count'))run(e.target);
+  io.unobserve(e.target)}})},{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+function run(el){if(el.dataset.done)return;el.dataset.done=1;
+  const end=+el.dataset.count,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',small=el.querySelector('small'),sh=small?small.outerHTML:'';
+  let t0=null;const dur=1100;
+  function step(t){if(!t0)t0=t;const p=Math.min((t-t0)/dur,1);const v=Math.round((1-Math.pow(1-p,3))*end);
+    el.firstChild&&(el.childNodes[0].nodeValue=pre+v+suf);if(small)el.innerHTML=pre+v+suf+sh;if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);}
+</script>
+</body>
+</html>
