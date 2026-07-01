@@ -226,6 +226,16 @@ footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px
 .form-msg{margin-top:12px;font-size:13.5px;color:var(--green);display:none}
 @media(max-width:980px){.apply-grid{grid-template-columns:1fr;gap:32px}.stack .tiles{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.stack .tiles{grid-template-columns:1fr}}
+
+/* Accessibility — visible focus */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,.proc-tab:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+.oc .ic svg{width:20px;height:20px}
+/* Mobile dropdown menu */
+@media(max-width:980px){
+  .nav nav.open{display:flex;position:absolute;top:62px;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 28px 16px;box-shadow:0 24px 40px -24px rgba(12,22,38,.25)}
+  .nav nav.open a{padding:13px 0;font-size:16px;border-bottom:1px solid var(--line)}
+  .nav nav.open a:last-child{border-bottom:0}
+}
 </style>
 </head>
 <body>
@@ -249,7 +259,7 @@ footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-pri btn-sm" href="#apply">Apply</a>
-    <button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.nav nav').style.display='flex'">☰</button>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false" onclick="var n=document.querySelector('.nav nav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">☰</button>
   </div>
 </header>
 
@@ -302,7 +312,7 @@ footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px
     <div class="m"><div class="n">First check</div><div class="l">We invest at the earliest stage — idea-stage founders welcome</div></div>
     <div class="m"><div class="n">One deal</div><div class="l">Simple, standard terms — the same for every company</div></div>
     <div class="m"><div class="n">12 weeks</div><div class="l">A focused batch, from idea to launch and Demo Day</div></div>
-    <div class="m"><div class="n">AI-first</div><div class="l">The only kind of company we back — with credits, mentors & network to match</div></div>
+    <div class="m"><div class="n">AI-first</div><div class="l">The only companies we back — with the credits, mentors and network to match</div></div>
   </div>
 </div>
 <div class="proof-note">AI-first companies only · Batch 01 reviewed on a rolling basis · we share specific terms when we make an offer</div>
@@ -327,12 +337,12 @@ footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px
       <span class="lbl dim">One standard deal · same for everyone</span>
     </div>
     <div class="offer">
-      <div class="oc rv"><div class="ic">◈</div><h3>The first check</h3><p>The first money in, on simple standard terms — no games, fast paperwork, and we move quickly so you can get back to building.</p></div>
-      <div class="oc rv"><div class="ic">⚡</div><h3>A 12-week program</h3><p>Weekly build sprints, office hours with the partners, and a small batch of serious AI-first founders pushing each other to ship.</p></div>
-      <div class="oc rv"><div class="ic">⛁</div><h3>Compute + model credits</h3><p>Meaningful credits from our compute and model partners, so you can build, evaluate, and scale without burning runway on inference.</p></div>
-      <div class="oc rv"><div class="ic">◇</div><h3>The network</h3><p>Warm intros to the customers, engineers, and operators who move AI companies forward — plus alumni who've done it.</p></div>
-      <div class="oc rv"><div class="ic">▲</div><h3>Demo Day</h3><p>Launch to a room of top seed and Series-A investors who understand the AI stack and write checks fast.</p></div>
-      <div class="oc rv"><div class="ic">∞</div><h3>Follow-on support</h3><p>We help you run your raise after the program and can double down on the companies that break out.</p></div>
+      <div class="oc rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.3 12.4l2.6 2.6 4.8-5.4"/></svg></div><h3>The first check</h3><p>The first money in, on simple standard terms — no games, fast paperwork, and we move quickly so you can get back to building.</p></div>
+      <div class="oc rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg></div><h3>A 12-week program</h3><p>Weekly build sprints, office hours with the partners, and a small batch of serious AI-first founders pushing each other to ship.</p></div>
+      <div class="oc rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12.5l9 5 9-5"/></svg></div><h3>Compute + model credits</h3><p>Meaningful credits from our compute and model partners, so you can build, evaluate, and scale without burning runway on inference.</p></div>
+      <div class="oc rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><path d="M8.1 11l7.8-3.8M8.1 13l7.8 3.8"/></svg></div><h3>The network</h3><p>Warm intros to the customers, engineers, and operators who move AI companies forward — plus founders who've done it.</p></div>
+      <div class="oc rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M7.5 20v-6M12 20V9M16.5 20v-9"/></svg></div><h3>Demo Day</h3><p>Launch to a room of top seed and Series-A investors who understand the AI stack and write checks fast.</p></div>
+      <div class="oc rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5A8 8 0 1 0 18 17"/><path d="M20 6v5h-5"/></svg></div><h3>Follow-on support</h3><p>We help you run your raise after the program and can double down on the companies that break out.</p></div>
     </div>
   </div>
 </section>
@@ -476,7 +486,7 @@ footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px
 
 <!-- CLOSE -->
 <section class="close" style="padding:66px 0">
-  <div class="wrap rv"><h2>Backing the best <em>AI-first founders</em> on Earth.</h2></div>
+  <div class="wrap rv"><h2>Backing the best <em>AI-first founders</em>, from day one.</h2></div>
 </section>
 
 <footer>
@@ -525,6 +535,12 @@ STAGES.forEach((s,i)=>{
 });
 function sel(i){document.querySelectorAll('.proc-tab').forEach((t,j)=>t.classList.toggle('on',j===i));
   document.querySelectorAll('.proc-panel').forEach((p,j)=>p.classList.toggle('on',j===i));}
+
+/* close mobile menu when a link is tapped */
+document.querySelectorAll('.nav nav a').forEach(a=>a.addEventListener('click',()=>{
+  const n=document.querySelector('.nav nav');n.classList.remove('open');
+  const b=document.querySelector('.menu-btn');if(b)b.setAttribute('aria-expanded','false');
+}));
 
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');
   e.target.querySelectorAll&&e.target.querySelectorAll('[data-count]').forEach(run);
