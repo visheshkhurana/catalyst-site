@@ -207,6 +207,25 @@ footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px
   .nav nav{display:none}.menu-btn{display:block}
 }
 @media(max-width:560px){ section{padding:58px 0} .proof .wrap{grid-template-columns:1fr}.proof .m{border-right:0} }
+
+/* STACK STRIP */
+.stack .tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:32px}
+.stk{border:1px solid var(--line);border-radius:12px;padding:18px 16px;background:#fff;transition:transform .2s var(--ease)}
+.stk:hover{transform:translateY(-3px)}
+.stk .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.stk .d{font-size:13px;color:var(--txt-2);margin-top:6px;line-height:1.4}
+/* APPLY FORM */
+.apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:0 24px 60px -30px rgba(12,22,38,.35)}
+.form-card .fg{margin-bottom:15px}
+.form-card label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt-2);margin-bottom:6px}
+.form-card input,.form-card textarea{width:100%;border:1px solid var(--line-2);border-radius:9px;padding:11px 13px;font-family:var(--sans);font-size:14.5px;color:var(--ink);background:var(--paper)}
+.form-card input:focus,.form-card textarea:focus{outline:none;border-color:var(--blue)}
+.form-card textarea{min-height:92px;resize:vertical}
+.form-card .note{font-size:11.5px;color:var(--txt-3);margin-top:10px}
+.form-msg{margin-top:12px;font-size:13.5px;color:var(--green);display:none}
+@media(max-width:980px){.apply-grid{grid-template-columns:1fr;gap:32px}.stack .tiles{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.stack .tiles{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -376,6 +395,21 @@ footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px
   </div>
 </section>
 
+<!-- STACK STRIP -->
+<section class="stack">
+  <div class="wrap">
+    <span class="lbl eyebrow">Your stack is covered</span>
+    <div class="head-row rv"><h2 style="font-size:clamp(24px,3.2vw,36px);max-width:22ch">Credits and support across the tools AI-first companies actually run on.</h2><span class="lbl dim">Through our partners</span></div>
+    <div class="tiles">
+      <div class="stk rv"><div class="k">Model providers</div><div class="d">Frontier and open models for your core product.</div></div>
+      <div class="stk rv"><div class="k">Cloud & compute</div><div class="d">Training, inference, and hosting at scale.</div></div>
+      <div class="stk rv"><div class="k">Vector & data</div><div class="d">Retrieval, storage, and the data layer.</div></div>
+      <div class="stk rv"><div class="k">Evals & observability</div><div class="d">Ship with confidence; watch what matters.</div></div>
+      <div class="stk rv"><div class="k">GTM & analytics</div><div class="d">Reach first customers and learn fast.</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- FOUNDERS -->
 <section id="founders">
   <div class="wrap">
@@ -412,16 +446,37 @@ footer .tag{color:var(--blue-2);font-style:italic;margin-top:12px;font-size:14px
   </div>
 </section>
 
-<!-- CLOSE / APPLY -->
-<section id="apply" class="close">
-  <div class="wrap rv">
-    <h2>Backing the best <em>AI-first founders</em> on Earth.</h2>
-    <p class="sub">If you're building an AI-first company, we want to write your first check. Applications for Batch 01 are open now.</p>
-    <div class="cta">
-      <a class="btn btn-pri" href="mailto:apply@catalystventurestudios.com?subject=Catalyst%20Batch%2001%20Application">Apply to the batch <span class="arrow">→</span></a>
-      <a class="btn btn-line" href="mailto:hello@catalystventurestudios.com">Email us</a>
+<!-- APPLY FORM -->
+<section id="apply">
+  <div class="wrap apply-grid">
+    <div class="rv">
+      <span class="lbl eyebrow">Apply to Batch 01</span>
+      <h2 style="font-size:clamp(26px,3.4vw,40px);max-width:15ch">If you're building AI-first, we want to write your first check.</h2>
+      <p style="font-size:17px;color:var(--txt-2);margin-top:16px;max-width:44ch">Applications are open and reviewed on a rolling basis. It takes a few minutes — no warm intro required.</p>
+      <div class="back-meta" style="margin-top:26px">
+        <div class="row"><div class="k">1 · Apply</div><div class="v">Tell us who you are and what you're building.</div></div>
+        <div class="row"><div class="k">2 · Talk</div><div class="v">A focused call with the partners, fast.</div></div>
+        <div class="row"><div class="k">3 · Build</div><div class="v">Get the check, join the batch, start shipping.</div></div>
+      </div>
+    </div>
+    <div class="form-card rv">
+      <form id="applyForm" onsubmit="return submitApp(event)">
+        <div class="fg"><label>Your name</label><input id="f_name" required placeholder="Ada Lovelace"></div>
+        <div class="fg"><label>Email</label><input id="f_email" type="email" required placeholder="you@company.com"></div>
+        <div class="fg"><label>Company or one-line idea</label><input id="f_company" required placeholder="What you're building, in a sentence"></div>
+        <div class="fg"><label>What are you building — and why you?</label><textarea id="f_about" required placeholder="What's AI-first about it, who it's for, and your unfair insight."></textarea></div>
+        <div class="fg"><label>Links (site, GitHub, demo) — optional</label><input id="f_links" placeholder="https://"></div>
+        <button class="btn btn-pri" type="submit" style="width:100%;justify-content:center">Submit application <span class="arrow">→</span></button>
+        <div class="note">Opens your email client with your application ready to send to apply@catalystventurestudios.com.</div>
+        <div class="form-msg" id="formMsg">Thanks — your email should be open. Send it and we'll be in touch soon.</div>
+      </form>
     </div>
   </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close" style="padding:66px 0">
+  <div class="wrap rv"><h2>Backing the best <em>AI-first founders</em> on Earth.</h2></div>
 </section>
 
 <footer>
@@ -480,6 +535,14 @@ document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
 function run(el){if(el.dataset.done)return;el.dataset.done=1;const end=+el.dataset.count;let t0=null;const dur=1100;
   function step(t){if(!t0)t0=t;const p=Math.min((t-t0)/dur,1);el.textContent=Math.round((1-Math.pow(1-p,3))*end);if(p<1)requestAnimationFrame(step);}
   requestAnimationFrame(step);}
+
+function submitApp(e){e.preventDefault();
+  const v=id=>document.getElementById(id).value.trim();
+  const body=`Name: ${v('f_name')}\nEmail: ${v('f_email')}\nCompany / idea: ${v('f_company')}\n\nWhat we're building & why us:\n${v('f_about')}\n\nLinks: ${v('f_links')||'—'}`;
+  const subject='Catalyst Batch 01 — '+(v('f_company')||v('f_name'));
+  window.location.href='mailto:apply@catalystventurestudios.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  document.getElementById('formMsg').style.display='block';
+  return false;}
 </script>
 </body>
 </html>
