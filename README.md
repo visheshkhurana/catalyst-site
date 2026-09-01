@@ -1,3 +1,7 @@
 # catalyst-site
 
-Production site for Catalyst Venture Studio, Inc. Live at https://www.catalystventurestudios.com — auto-deployed from main via Vercel.
+Public site for Catalyst Venture Studio — a holding studio for brand, financials, and ops.
+
+Live at https://www.catalystventurestudios.com. Static HTML, auto-deployed from `main` via Vercel.
+
+Contact: hello@catalystventurestudios.com
